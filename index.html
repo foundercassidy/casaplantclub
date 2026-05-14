@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa Plant Club | Premium Indoor Plant Care</title>
+<meta name="description" content="Premium indoor plant care engineered where plants have no business surviving. Born in Arizona's Sonoran Desert. Wholesale available Fall 2026.">
+<meta property="og:title" content="Casa Plant Club — Premium Indoor Plant Care">
+<meta property="og:description" content="Your AC is a plant killer. We're the antidote.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --green-deep:   #1B3A2D;
+    --green-mid:    #2D6A4F;
+    --green-light:  #52B788;
+    --cream:        #F5F0E8;
+    --cream-dark:   #E8E0D0;
+    --charcoal:     #1A1A1A;
+    --mist:         #C8D8C0;
+    --soil:         #3D2B1F;
+    --white:        #FAFAF8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* subtle grain overlay */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  .skip-link {
+    position: absolute; top: -999px; left: 0;
+    background: var(--green-mid); color: var(--white);
+    padding: 8px 16px; font-weight: 500; z-index: 9999;
+    text-decoration: none;
+  }
+  .skip-link:focus { top: 0; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(245,240,232,0.85);
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green-deep);
+    text-decoration: none;
+  }
+
+  .nav-cta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--green-deep);
+    text-decoration: none;
+    border-bottom: 1px solid var(--green-mid);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .nav-cta:hover { color: var(--green-mid); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    padding: 0 3rem 5rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(82,183,136,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 70% at 10% 80%, rgba(27,58,45,0.06) 0%, transparent 70%);
+    z-index: 0;
+  }
+
+  .hero-left {
+    position: relative; z-index: 1;
+    padding-bottom: 2rem;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 2rem;
+    display: block;
+    opacity: 0;
+    animation: fade-up 1s 0.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .hero-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 6.5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    color: var(--green-deep);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fade-up 1s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .hero-headline em {
+    font-style: italic;
+    color: var(--green-mid);
+  }
+
+  .hero-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-weight: 300;
+    line-height: 1.7;
+    color: #555;
+    max-width: 420px;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fade-up 1s 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    opacity: 0;
+    animation: fade-up 1s 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .btn-primary {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    background: var(--green-deep);
+    color: var(--cream);
+    border: none;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--green-mid); transform: translateY(-1px); }
+
+  .btn-ghost {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--green-deep);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--green-mid); }
+
+  .hero-right {
+    position: relative; z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    opacity: 0;
+    animation: fade-in 1.2s 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .hero-logo-block {
+    width: clamp(200px, 25vw, 380px);
+    aspect-ratio: 1;
+    background: var(--green-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+  }
+
+  .hero-logo-block svg {
+    width: 100%;
+    height: auto;
+  }
+
+  @keyframes fade-up {
+    from { transform: translateY(24px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--mist), transparent);
+    margin: 0 3rem;
+  }
+
+  /* PRODUCTS */
+  .products {
+    padding: 7rem 3rem;
+    position: relative;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 4rem;
+    display: block;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    border: 1px solid var(--mist);
+  }
+
+  .product-card {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid var(--mist);
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-card:last-child { border-right: none; }
+  .product-card:hover { background: var(--green-deep); }
+
+  .product-card:hover .product-name,
+  .product-card:hover .product-desc,
+  .product-card:hover .product-number { color: var(--cream); }
+  .product-card:hover .product-bar { background: var(--green-light); }
+
+  .product-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: .2em;
+    color: var(--mist);
+    margin-bottom: 2rem;
+    display: block;
+    transition: color 0.3s;
+  }
+
+  .product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    transition: color 0.3s;
+  }
+
+  .product-bar {
+    width: 24px;
+    height: 2px;
+    background: var(--green-mid);
+    margin-bottom: 1rem;
+    transition: background 0.3s;
+  }
+
+  .product-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #666;
+    transition: color 0.3s;
+  }
+
+  /* STORY */
+  .story {
+    padding: 7rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 6rem;
+    align-items: start;
+    background: var(--green-deep);
+    color: var(--cream);
+  }
+
+  .story-left {
+    position: sticky;
+    top: 6rem;
+  }
+
+  .story-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 2rem;
+    display: block;
+  }
+
+  .story-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--cream);
+  }
+
+  .story-title em {
+    font-style: italic;
+    color: var(--green-light);
+  }
+
+  .story-right p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(1rem, 1.2vw, 1.15rem);
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--mist);
+    margin-bottom: 1.5rem;
+  }
+
+  .story-right p strong {
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  .story-poem {
+    margin: 3rem 0;
+    padding-left: 2rem;
+    border-left: 2px solid var(--green-mid);
+  }
+
+  .story-poem p {
+    font-family: 'Playfair Display', serif !important;
+    font-style: italic;
+    font-size: clamp(1.1rem, 1.4vw, 1.3rem) !important;
+    line-height: 2 !important;
+    color: var(--cream) !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* WHOLESALE */
+  .wholesale {
+    padding: 7rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .wholesale-right-sticky {
+    position: sticky;
+    top: 6rem;
+  }
+
+  .wholesale-sustainability {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .wholesale-sustainability p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: .1em;
+    line-height: 1.8;
+    color: var(--green-light);
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .wholesale-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--green-deep);
+    margin-bottom: 1.5rem;
+  }
+
+  .wholesale-left h2 em {
+    font-style: italic;
+    color: var(--green-mid);
+  }
+
+  .wholesale-left p {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 2rem;
+  }
+
+  .wholesale-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    background: var(--green-deep);
+    color: var(--cream);
+    padding: 0.5rem 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .wholesale-right {
+    background: var(--green-deep);
+    padding: 3.5rem;
+  }
+
+  .wholesale-right h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .wholesale-right .sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 2rem;
+    display: block;
+  }
+
+  .wholesale-details {
+    list-style: none;
+    margin-bottom: 2.5rem;
+  }
+
+  .wholesale-details li {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--mist);
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .wholesale-details li span {
+    color: var(--cream);
+    font-weight: 500;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+  }
+
+  .wholesale-email-link {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: .08em;
+    color: var(--cream);
+    text-decoration: none;
+    background: var(--green-mid);
+    padding: 1.1rem 1.5rem;
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .wholesale-email-link:hover { background: var(--green-light); color: var(--green-deep); }
+
+  /* ECOSYSTEM */
+  .ecosystem {
+    padding: 7rem 3rem;
+    background: var(--charcoal);
+  }
+
+  .ecosystem-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 4rem;
+    display: block;
+  }
+
+  .ecosystem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .eco-card {
+    background: #222;
+    padding: 3.5rem;
+    transition: background 0.3s;
+    text-decoration: none;
+  }
+  .eco-card:hover { background: #2a2a2a; }
+
+  .eco-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .eco-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .eco-card p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #888;
+    margin-bottom: 2rem;
+  }
+
+  .eco-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    border-bottom: 1px solid var(--green-mid);
+    padding-bottom: 2px;
+  }
+
+  /* NEWSLETTER */
+  .newsletter {
+    padding: 6rem 3rem;
+    background: var(--green-mid);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .newsletter h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.1;
+  }
+
+  .newsletter h2 em {
+    font-style: italic;
+    color: var(--green-deep);
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-right: none;
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    padding: 1rem 1.25rem;
+    outline: none;
+    transition: background 0.2s;
+  }
+  .newsletter-input::placeholder { color: rgba(255,255,255,0.5); }
+  .newsletter-input:focus { background: rgba(255,255,255,0.2); }
+
+  .newsletter-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    background: var(--green-deep);
+    color: var(--cream);
+    border: none;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .newsletter-btn:hover { background: var(--charcoal); }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    padding: 3rem;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-brand p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: #555;
+    line-height: 1.7;
+    max-width: 280px;
+    margin-top: 0.75rem;
+  }
+
+  .footer-brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--cream);
+  }
+
+  .footer-col h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-col a {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: #666;
+    text-decoration: none;
+    margin-bottom: 0.6rem;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--green-light); }
+
+  .footer-bottom {
+    border-top: 1px solid #2a2a2a;
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-bottom p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #444;
+  }
+
+  .footer-bottom a { color: var(--green-mid); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--green-light); }
+
+  .footer-legal {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .wholesale-details li:last-child {
+    border-bottom: none;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1.5rem 1.5rem; }
+
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 8rem 1.5rem 4rem;
+      min-height: auto;
+    }
+    .hero-right { display: none; }
+    .hero-sub { max-width: 100%; }
+
+    .section-divider { margin: 0 1.5rem; }
+    .products { padding: 5rem 1.5rem; }
+    .products-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .product-card { border-right: 1px solid var(--mist); border-bottom: 1px solid var(--mist); }
+
+    .story {
+      grid-template-columns: 1fr;
+      padding: 5rem 1.5rem;
+      gap: 3rem;
+    }
+    .story-left { position: static; }
+
+    .wholesale {
+      grid-template-columns: 1fr;
+      padding: 5rem 1.5rem;
+      gap: 3rem;
+    }
+
+    .ecosystem { padding: 5rem 1.5rem; }
+    .ecosystem-grid { grid-template-columns: 1fr; }
+
+    .newsletter {
+      grid-template-columns: 1fr;
+      padding: 4rem 1.5rem;
+      gap: 2rem;
+    }
+    .newsletter-form { flex-direction: column; }
+    .newsletter-input { border-right: 1px solid rgba(255,255,255,0.3); border-bottom: none; }
+
+    footer { padding: 3rem 1.5rem; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; opacity: 1 !important; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<nav>
+  <a href="/" class="nav-logo">Casa Plant Club</a>
+  <a href="#wholesale" class="nav-cta">Wholesale Inquiries</a>
+</nav>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-bg"></div>
+
+    <div class="hero-left">
+      <span class="hero-eyebrow">// Tempe, Arizona · Est. 2024</span>
+      <h1 class="hero-headline">
+        We pulled your plant<br>
+        back from <em>the ledge.</em><br>
+        You're welcome.
+      </h1>
+      <p class="hero-sub">
+        Premium indoor plant care. Born in the Sonoran Desert.<br>If it works here, it works anywhere.
+      </p>
+      <div class="hero-actions">
+        <a href="#wholesale" class="btn-primary">Carry Our Products</a>
+        <a href="#products" class="btn-ghost">See the Line</a>
+      </div>
+    </div>
+
+    <!-- logo placeholder: drop your logo image here -->
+    <div class="hero-right" aria-hidden="true"></div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- PRODUCTS -->
+  <section class="products" id="products" aria-label="Product line">
+    <span class="section-label">// The Line</span>
+    <div class="products-grid">
+
+      <div class="product-card">
+        <span class="product-number">01</span>
+        <h2 class="product-name">Liquid Fertilizer</h2>
+        <div class="product-bar"></div>
+        <p class="product-desc">Living microbes. Locally sourced. Zero odor. No chemicals. Just soil doing what soil was always supposed to do.</p>
+      </div>
+
+      <div class="product-card">
+        <span class="product-number">02</span>
+        <h2 class="product-name">Leaf Treatment</h2>
+        <div class="product-bar"></div>
+        <p class="product-desc">Cleans, shines, and protects. Applied externally. Results speak for themselves.</p>
+      </div>
+
+      <div class="product-card">
+        <span class="product-number">03</span>
+        <h2 class="product-name">Rooting Powder</h2>
+        <div class="product-bar"></div>
+        <p class="product-desc">Encourages strong, healthy root development from the ground up. Non-chemical. Very effective.</p>
+      </div>
+
+      <div class="product-card">
+        <span class="product-number">04</span>
+        <h2 class="product-name">Microfiber Towel</h2>
+        <div class="product-bar"></div>
+        <p class="product-desc">Plant-safe microfiber. Reusable. You know exactly what it's for.</p>
+      </div>
+
+      <div class="product-card">
+        <span class="product-number">05</span>
+        <h2 class="product-name">Rad Plant Accessories</h2>
+        <div class="product-bar"></div>
+        <p class="product-desc">The stuff nobody else thought to make. Designed for the plant obsessed. More coming soon.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="story" id="story" aria-label="Our story">
+    <div class="story-left">
+      <span class="story-label">// The Story</span>
+      <h2 class="story-title">A lush green<br><em>oasis.</em><br>Built with<br>a plan.</h2>
+    </div>
+    <div class="story-right">
+      <div class="story-poem">
+        <p>Plants don't want to live in a pot.</p>
+        <p>They want soil teeming with life.</p>
+        <p>Humidity. Roots that stretch.</p>
+        <p>Nutrients that cycle naturally through the earth.</p>
+        <p>We want them in our homes.</p>
+      </div>
+      <p>So we made products from ingredients most brands throw away. <strong>Locally sourced, locally sustainable</strong>, closing the loops on byproducts and waste that would otherwise leave our region. The results of overseas production without the footprint.</p>
+      <p>Casa Plant Club is a premium indoor plant care line built to give your plant what it actually needs to thrive somewhere it was <strong>never supposed to live.</strong></p>
+    </div>
+  </section>
+
+  <!-- WHOLESALE -->
+  <section class="wholesale" id="wholesale" aria-label="Wholesale information">
+    <div class="wholesale-left">
+      <span class="wholesale-badge">// Available Fall 2026</span>
+      <h2>Our biggest<br>batch <em>ever.</em></h2>
+      <p>Casa Plant Club products will be available for wholesale starting Fall 2026. If you sell houseplants, carry plant care, or want to be the shop that stocks the line everyone is talking about — get on the list now.</p>
+      <p>We sell to boutique plant shops, garden centers, co-ops, and independent retailers nationwide. Products are carried and available for refill at The Plant Mill, Tempe AZ.</p>
+      <p>Our biggest batch comes with a commitment we're not walking back. Every Casa Plant Club product stays in a small bottle. Concentrated by design — less packaging, less waste, more product per ounce than anything on the shelf next to us.</p>
+      <p>This batch also marks our switch from glass to post-consumer recycled plastic. Not because glass isn't beautiful — it is. Because PCR plastic has a lower carbon footprint to ship, survives the journey to your shop without breaking, and can be returned, refilled, and put back into circulation. Glass gets recycled once. Our bottles keep going.</p>
+      <p>The refill program isn't an afterthought. It's the whole point.</p>
+    </div>
+    <div class="wholesale-right-sticky">
+      <div class="wholesale-right">
+        <h3>Wholesale Inquiries</h3>
+        <span class="sub">Get on the list</span>
+        <ul class="wholesale-details">
+          <li>Availability <span>Fall 2026</span></li>
+          <li>Minimum Order <span>TBD</span></li>
+          <li>Refill Program <span>Available</span></li>
+        </ul>
+        <a href="mailto:wholesale@casaplantclub.com" class="wholesale-email-link">
+          wholesale@casaplantclub.com →
+        </a>
+      </div>
+      <div class="wholesale-sustainability">
+        <p>
+          Small bottles. Concentrated formula.<br>
+          Post-consumer recycled plastic.<br>
+          Refillable by design.<br>
+          The loop closes here.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ECOSYSTEM -->
+  <section class="ecosystem" id="ecosystem" aria-label="Our ecosystem">
+    <span class="ecosystem-label">// Our World</span>
+    <div class="ecosystem-grid">
+
+      <a href="https://theplantmill.com" target="_blank" rel="noopener" class="eco-card">
+        <span class="eco-card-label">Retail + Refillery</span>
+        <h3>The Plant Mill</h3>
+        <p>Arizona's first plant shop co-op. Find our full product line in store — and bring your empties for a refill.</p>
+        <span class="eco-link">Visit The Plant Mill →</span>
+      </a>
+
+      <a href="https://stickermenace.com" target="_blank" rel="noopener" class="eco-card">
+        <span class="eco-card-label">Print + Labels</span>
+        <h3>Sticker Menace</h3>
+        <p>Our in-house print shop. Every Casa Plant Club label starts here — and so does your next print run.</p>
+        <span class="eco-link">Visit Sticker Menace →</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter" aria-label="Newsletter signup">
+    <h2>Stay in<br>the <em>loop.</em></h2>
+    <div>
+      <form class="newsletter-form" action="#" method="post" aria-label="Newsletter signup">
+        <input
+          type="email"
+          class="newsletter-input"
+          placeholder="your@email.com"
+          required
+          aria-label="Email address"
+        >
+        <button type="submit" class="newsletter-btn">Subscribe →</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-brand-name">Casa Plant Club</span>
+      <p>Premium indoor plant care. Born in Arizona's Sonoran Desert. If it works here, it works anywhere.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Follow</h4>
+      <a href="https://instagram.com/casaplantclub" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://facebook.com/casaplantclub" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://tiktok.com/@casaplantclub" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://linkedin.com/company/casaplantclub" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="footer-col">
+      <h4>Our World</h4>
+      <a href="https://theplantmill.com" target="_blank" rel="noopener">The Plant Mill</a>
+      <a href="https://stickermenace.com" target="_blank" rel="noopener">Sticker Menace</a>
+      <a href="mailto:wholesale@casaplantclub.com">Wholesale</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; <span id="year"></span> Casa Plant Club LLC &nbsp;·&nbsp; A <a href="https://clicktrapmedia.com" target="_blank" rel="noopener">Clicktrap Media</a> production</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
