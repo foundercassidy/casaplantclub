@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa Plant Club | Premium Indoor Plant Care</title>
+<meta name="description" content="Premium indoor plant care engineered where plants have no business surviving. Born in Arizona's Sonoran Desert. Wholesale available Fall 2026.">
+<meta property="og:title" content="Casa Plant Club — Premium Indoor Plant Care">
+<meta property="og:description" content="Your AC is a plant killer. We're the antidote.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --green-deep:   #1B3A2D;
+    --green-mid:    #2D6A4F;
+    --green-light:  #52B788;
+    --cream:        #F5F0E8;
+    --cream-dark:   #E8E0D0;
+    --charcoal:     #1A1A1A;
+    --mist:         #C8D8C0;
+    --soil:         #3D2B1F;
+    --white:        #FAFAF8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* subtle grain overlay */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  .skip-link {
+    position: absolute; top: -999px; left: 0;
+    background: var(--green-mid); color: var(--white);
+    padding: 8px 16px; font-weight: 500; z-index: 9999;
+    text-decoration: none;
+  }
+  .skip-link:focus { top: 0; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(245,240,232,0.85);
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green-deep);
+    text-decoration: none;
+  }
+
+  .nav-cta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--green-deep);
+    text-decoration: none;
+    border-bottom: 1px solid var(--green-mid);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .nav-cta:hover { color: var(--green-mid); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    padding: 0 3rem 5rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(82,183,136,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 70% at 10% 80%, rgba(27,58,45,0.06) 0%, transparent 70%);
+    z-index: 0;
+  }
+
+  .hero-left {
+    position: relative; z-index: 1;
+    padding-bottom: 2rem;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 2rem;
+    display: block;
+    opacity: 0;
+    animation: fade-up 1s 0.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .hero-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 6.5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    color: var(--green-deep);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fade-up 1s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .hero-headline em {
+    font-style: italic;
+    color: var(--green-mid);
+  }
+
+  .hero-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-weight: 300;
+    line-height: 1.7;
+    color: #555;
+    max-width: 420px;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fade-up 1s 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    opacity: 0;
+    animation: fade-up 1s 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .btn-primary {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    background: var(--green-deep);
+    color: var(--cream);
+    border: none;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--green-mid); transform: translateY(-1px); }
+
+  .btn-ghost {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--green-deep);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--green-mid); }
+
+  .hero-right {
+    position: relative; z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    opacity: 0;
+    animation: fade-in 1.2s 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .hero-logo-block {
+    width: clamp(200px, 25vw, 380px);
+    aspect-ratio: 1;
+    background: var(--green-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+  }
+
+  .hero-logo-block svg {
+    width: 100%;
+    height: auto;
+  }
+
+  @keyframes fade-up {
+    from { transform: translateY(24px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--mist), transparent);
+    margin: 0 3rem;
+  }
+
+  /* PRODUCTS */
+  .products {
+    padding: 7rem 3rem;
+    position: relative;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 4rem;
+    display: block;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    border: 1px solid var(--mist);
+  }
+
+  .product-card {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid var(--mist);
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-card:last-child { border-right: none; }
+  .product-card:hover { background: var(--green-deep); }
+
+  .product-card:hover .product-name,
+  .product-card:hover .product-desc,
+  .product-card:hover .product-number { color: var(--cream); }
+  .product-card:hover .product-bar { background: var(--green-light); }
+
+  .product-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: .2em;
+    color: var(--mist);
+    margin-bottom: 2rem;
+    display: block;
+    transition: color 0.3s;
+  }
+
+  .product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    transition: color 0.3s;
+  }
+
+  .product-bar {
+    width: 24px;
+    height: 2px;
+    background: var(--green-mid);
+    margin-bottom: 1rem;
+    transition: background 0.3s;
+  }
+
+  .product-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #666;
+    transition: color 0.3s;
+  }
+
+  /* STORY */
+  .story {
+    padding: 7rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 6rem;
+    align-items: start;
+    background: var(--green-deep);
+    color: var(--cream);
+  }
+
+  .story-left {
+    position: sticky;
+    top: 6rem;
+  }
+
+  .story-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 2rem;
+    display: block;
+  }
+
+  .story-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--cream);
+  }
+
+  .story-title em {
+    font-style: italic;
+    color: var(--green-light);
+  }
+
+  .story-right p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(1rem, 1.2vw, 1.15rem);
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--mist);
+    margin-bottom: 1.5rem;
+  }
+
+  .story-right p strong {
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  .story-poem {
+    margin: 3rem 0;
+    padding-left: 2rem;
+    border-left: 2px solid var(--green-mid);
+  }
+
+  .story-poem p {
+    font-family: 'Playfair Display', serif !important;
+    font-style: italic;
+    font-size: clamp(1.1rem, 1.4vw, 1.3rem) !important;
+    line-height: 2 !important;
+    color: var(--cream) !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* WHOLESALE */
+  .wholesale {
+    padding: 7rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .wholesale-right-sticky {
+    position: sticky;
+    top: 6rem;
+  }
+
+  .wholesale-sustainability {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .wholesale-sustainability p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: .1em;
+    line-height: 1.8;
+    color: var(--green-light);
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .wholesale-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--green-deep);
+    margin-bottom: 1.5rem;
+  }
+
+  .wholesale-left h2 em {
+    font-style: italic;
+    color: var(--green-mid);
+  }
+
+  .wholesale-left p {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 2rem;
+  }
+
+  .wholesale-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    background: var(--green-deep);
+    color: var(--cream);
+    padding: 0.5rem 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .wholesale-right {
+    background: var(--green-deep);
+    padding: 3.5rem;
+  }
+
+  .wholesale-right h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .wholesale-right .sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 2rem;
+    display: block;
+  }
+
+  .wholesale-details {
+    list-style: none;
+    margin-bottom: 2.5rem;
+  }
+
+  .wholesale-details li {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--mist);
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .wholesale-details li span {
+    color: var(--cream);
+    font-weight: 500;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+  }
+
+  .wholesale-email-link {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: .08em;
+    color: var(--cream);
+    text-decoration: none;
+    background: var(--green-mid);
+    padding: 1.1rem 1.5rem;
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .wholesale-email-link:hover { background: var(--green-light); color: var(--green-deep); }
+
+  /* ECOSYSTEM */
+  .ecosystem {
+    padding: 7rem 3rem;
+    background: var(--charcoal);
+  }
+
+  .ecosystem-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 4rem;
+    display: block;
+  }
+
+  .ecosystem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .eco-card {
+    background: #222;
+    padding: 3.5rem;
+    transition: background 0.3s;
+    text-decoration: none;
+  }
+  .eco-card:hover { background: #2a2a2a; }
+
+  .eco-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .eco-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .eco-card p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #888;
+    margin-bottom: 2rem;
+  }
+
+  .eco-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    border-bottom: 1px solid var(--green-mid);
+    padding-bottom: 2px;
+  }
+
+  /* NEWSLETTER */
+  .newsletter {
+    padding: 6rem 3rem;
+    background: var(--green-mid);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .newsletter h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.1;
+  }
+
+  .newsletter h2 em {
+    font-style: italic;
+    color: var(--green-deep);
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-right: none;
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    padding: 1rem 1.25rem;
+    outline: none;
+    transition: background 0.2s;
+  }
+  .newsletter-input::placeholder { color: rgba(255,255,255,0.5); }
+  .newsletter-input:focus { background: rgba(255,255,255,0.2); }
+
+  .newsletter-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    background: var(--green-deep);
+    color: var(--cream);
+    border: none;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .newsletter-btn:hover { background: var(--charcoal); }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    padding: 3rem;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-brand p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: #555;
+    line-height: 1.7;
+    max-width: 280px;
+    margin-top: 0.75rem;
+  }
+
+  .footer-brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--cream);
+  }
+
+  .footer-col h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-col a {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: #666;
+    text-decoration: none;
+    margin-bottom: 0.6rem;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--green-light); }
+
+  .footer-bottom {
+    border-top: 1px solid #2a2a2a;
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-bottom p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #444;
+  }
+
+  .footer-bottom a { color: var(--green-mid); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--green-light); }
+
+  .footer-legal {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .wholesale-details li:last-child {
+    border-bottom: none;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1.5rem 1.5rem; }
+
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 8rem 1.5rem 4rem;
+      min-height: auto;
+    }
+    .hero-right { display: none; }
+    .hero-sub { max-width: 100%; }
+
+    .section-divider { margin: 0 1.5rem; }
+    .products { padding: 5rem 1.5rem; }
+    .products-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .product-card { border-right: 1px solid var(--mist); border-bottom: 1px solid var(--mist); }
+
+    .story {
+      grid-template-columns: 1fr;
+      padding: 5rem 1.5rem;
+      gap: 3rem;
+    }
+    .story-left { position: static; }
+
+    .wholesale {
+      grid-template-columns: 1fr;
+      padding: 5rem 1.5rem;
+      gap: 3rem;
+    }
+
+    .ecosystem { padding: 5rem 1.5rem; }
+    .ecosystem-grid { grid-template-columns: 1fr; }
+
+    .newsletter {
+      grid-template-columns: 1fr;
+      padding: 4rem 1.5rem;
+      gap: 2rem;
+    }
+    .newsletter-form { flex-direction: column; }
+    .newsletter-input { border-right: 1px solid rgba(255,255,255,0.3); border-bottom: none; }
+
+    footer { padding: 3rem 1.5rem; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; opacity: 1 !important; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<nav>
+  <a href="/" class="nav-logo">Casa Plant Club</a>
+  <a href="#wholesale" class="nav-cta">Wholesale Inquiries</a>
+</nav>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-bg"></div>
+
+    <div class="hero-left">
+      <span class="hero-eyebrow">// Tempe, Arizona · Est. 2024</span>
+      <h1 class="hero-headline">
+        We pulled your plant<br>
+        back from <em>the ledge.</em><br>
+        You're welcome.
+      </h1>
+      <p class="hero-sub">
+        Premium indoor plant care. Born in the Sonoran Desert.<br>If it works here, it works anywhere.
+      </p>
+      <div class="hero-actions">
+        <a href="#wholesale" class="btn-primary">Carry Our Products</a>
+        <a href="#products" class="btn-ghost">See the Line</a>
+      </div>
+    </div>
+
+    
+    <div class="hero-right" aria-hidden="true"><div class="hero-logo-block"><img src="data:image/jpeg;base64,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EBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBD/3QAEACD/2gAMAwEAAhEDEQA/APkuiiitD8DCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//Q+S6KKK0PwMKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/9H5LooorQ/AwooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//0vkuiiitD8DCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//T+S6KKK0PwMKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/9T5LooorQ/AwooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//1fkuiiitD8DCiiigAooooAKKKKACiiigAooooAKKKKACiiig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KKKKACiiigAooooA/9f5LooorQ/AwooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//0PkuiiitD8DCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//R+S6KKK0PwMKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/9L5LooorQ/AwooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//0/kuiiitD8DCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//U+S6KKK0PwMKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/9X5LooorQ/AwooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//1vkuiiitD8DCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//Z" alt="Casa Plant Club" style="width:100%;height:auto;display:block;"></div></div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- PRODUCTS -->
+  <section class="products" id="products" aria-label="Product line">
+    <span class="section-label">// The Line</span>
+    <div class="products-grid">
+
+      <div class="product-card">
+        <span class="product-number">01</span>
+        <h2 class="product-name">Liquid Fertilizer</h2>
+        <div class="product-bar"></div>
+        <p class="product-desc">Living microbes. Locally sourced. Zero odor. No chemicals. Just soil doing what soil was always supposed to do.</p>
+      </div>
+
+      <div class="product-card">
+        <span class="product-number">02</span>
+        <h2 class="product-name">Leaf Treatment</h2>
+        <div class="product-bar"></div>
+        <p class="product-desc">Cleans, shines, and protects. Applied externally. Results speak for themselves.</p>
+      </div>
+
+      <div class="product-card">
+        <span class="product-number">03</span>
+        <h2 class="product-name">Rooting Powder</h2>
+        <div class="product-bar"></div>
+        <p class="product-desc">Encourages strong, healthy root development from the ground up. Non-chemical. Very effective.</p>
+      </div>
+
+      <div class="product-card">
+        <span class="product-number">04</span>
+        <h2 class="product-name">Microfiber Towel</h2>
+        <div class="product-bar"></div>
+        <p class="product-desc">Plant-safe microfiber. Reusable. You know exactly what it's for.</p>
+      </div>
+
+      <div class="product-card">
+        <span class="product-number">05</span>
+        <h2 class="product-name">Rad Plant Accessories</h2>
+        <div class="product-bar"></div>
+        <p class="product-desc">The stuff nobody else thought to make. Designed for the plant obsessed. More coming soon.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="story" id="story" aria-label="Our story">
+    <div class="story-left">
+      <span class="story-label">// The Story</span>
+      <h2 class="story-title">A lush green<br><em>oasis.</em><br>Built with<br>a plan.</h2>
+    </div>
+    <div class="story-right">
+      <div class="story-poem">
+        <p>Plants don't want to live in a pot.</p>
+        <p>They want soil teeming with life.</p>
+        <p>Humidity. Roots that stretch.</p>
+        <p>Nutrients that cycle naturally through the earth.</p>
+        <p>We want them in our homes.</p>
+      </div>
+      <p>So we made products from ingredients most brands throw away. <strong>Locally sourced, locally sustainable</strong>, closing the loops on byproducts and waste that would otherwise leave our region. The results of overseas production without the footprint.</p>
+      <p>Casa Plant Club is a premium indoor plant care line built to give your plant what it actually needs to thrive somewhere it was <strong>never supposed to live.</strong></p>
+    </div>
+  </section>
+
+  <!-- WHOLESALE -->
+  <section class="wholesale" id="wholesale" aria-label="Wholesale information">
+    <div class="wholesale-left">
+      <span class="wholesale-badge">// Available Fall 2026</span>
+      <h2>Our biggest<br>batch <em>ever.</em></h2>
+      <p>Casa Plant Club products will be available for wholesale starting Fall 2026. If you sell houseplants, carry plant care, or want to be the shop that stocks the line everyone is talking about — get on the list now.</p>
+      <p>We sell to boutique plant shops, garden centers, co-ops, and independent retailers nationwide. Products are carried and available for refill at The Plant Mill, Tempe AZ.</p>
+      <p>Our biggest batch comes with a commitment we're not walking back. Every Casa Plant Club product stays in a small bottle. Concentrated by design — less packaging, less waste, more product per ounce than anything on the shelf next to us.</p>
+      <p>This batch also marks our switch from glass to post-consumer recycled plastic. Not because glass isn't beautiful — it is. Because PCR plastic has a lower carbon footprint to ship, survives the journey to your shop without breaking, and can be returned, refilled, and put back into circulation. Glass gets recycled once. Our bottles keep going.</p>
+      <p>The refill program isn't an afterthought. It's the whole point.</p>
+    </div>
+    <div class="wholesale-right-sticky">
+      <div class="wholesale-right">
+        <h3>Wholesale Inquiries</h3>
+        <span class="sub">Get on the list</span>
+        <ul class="wholesale-details">
+          <li>Availability <span>Fall 2026</span></li>
+          <li>Minimum Order <span>TBD</span></li>
+          <li>Refill Program <span>Available</span></li>
+        </ul>
+        <a href="mailto:wholesale@casaplantclub.com" class="wholesale-email-link">
+          wholesale@casaplantclub.com →
+        </a>
+      </div>
+      <div class="wholesale-sustainability">
+        <p>
+          Small bottles. Concentrated formula.<br>
+          Post-consumer recycled plastic.<br>
+          Refillable by design.<br>
+          The loop closes here.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter" aria-label="Newsletter signup">
+    <h2>Stay in<br>the <em>loop.</em></h2>
+    <div>
+      <form accept-charset="UTF-8" action="https://hh142.infusionsoft.com/app/form/process/677566c234e558cbaf912eb19d025533" class="newsletter-form" id="inf_form_677566c234e558cbaf912eb19d025533" method="POST">
+        <input name="inf_form_xid" type="hidden" value="677566c234e558cbaf912eb19d025533">
+        <input name="inf_form_name" type="hidden" value="Web Form submitted">
+        <input name="infusionsoft_version" type="hidden" value="1.70.0.942760">
+        <input type="email" class="newsletter-input" id="inf_field_Email" name="inf_field_Email" placeholder="your@email.com" required aria-label="Email address">
+        <button class="newsletter-btn infusion-recaptcha" id="recaptcha_677566c234e558cbaf912eb19d025533" type="submit">Subscribe →</button>
+        <input type="text" name="inf-sbt" style="display:none !important;">
+      </form>
+    </div>
+  </section>
+
+  <!-- ECOSYSTEM -->
+  <section class="ecosystem" id="ecosystem" aria-label="Our ecosystem">
+    <span class="ecosystem-label">// Our World</span>
+    <div class="ecosystem-grid">
+
+      <a href="https://theplantmill.com" target="_blank" rel="noopener" class="eco-card">
+        <span class="eco-card-label">Retail + Refillery</span>
+        <h3>The Plant Mill</h3>
+        <p>Arizona's first plant shop co-op. Find our full product line in store — and bring your empties for a refill.</p>
+        <span class="eco-link">Visit The Plant Mill →</span>
+      </a>
+
+      <a href="https://stickermenace.com" target="_blank" rel="noopener" class="eco-card">
+        <span class="eco-card-label">Print + Labels</span>
+        <h3>Sticker Menace</h3>
+        <p>Our in-house print shop. Every Casa Plant Club label starts here — and so does your next print run.</p>
+        <span class="eco-link">Visit Sticker Menace →</span>
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<script type="text/javascript" src="https://hh142.infusionsoft.app/app/webTracking/getTrackingCode"></script>
+<script type="text/javascript" src="https://hh142.infusionsoft.com/resources/external/recaptcha/production/recaptcha.js?b=1.70.0.942760"></script>
+<script type="text/javascript" src="https://hh142.infusionsoft.com/resources/external/recaptcha/production/enterpriseRecaptcha.js?b=1.70.0.942760"></script>
+<script type="text/javascript" src="https://hh142.infusionsoft.com/app/timezone/timezoneInputJs?xid=677566c234e558cbaf912eb19d025533"></script>
+<script type="text/javascript" src="https://hh142.infusionsoft.com/js/jquery/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="https://hh142.infusionsoft.app/app/webform/overwriteRefererJs"></script>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-brand-name">Casa Plant Club</span>
+      <p>Premium indoor plant care. Born in Arizona's Sonoran Desert. If it works here, it works anywhere.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Follow</h4>
+      <a href="https://instagram.com/casaplantclub" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://facebook.com/casaplantclub" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://tiktok.com/@casaplantclub" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://www.linkedin.com/company/casa-plant-club" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="footer-col">
+      <h4>Our World</h4>
+      <a href="https://theplantmill.com" target="_blank" rel="noopener">The Plant Mill</a>
+      <a href="https://stickermenace.com" target="_blank" rel="noopener">Sticker Menace</a>
+      <a href="mailto:wholesale@casaplantclub.com">Wholesale</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; <span id="year"></span> Casa Plant Club LLC &nbsp;·&nbsp; A <a href="https://clicktrapmedia.com" target="_blank" rel="noopener">Clicktrap Media</a> production</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
